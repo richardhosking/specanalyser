@@ -1,0 +1,4 @@
+*.pyc
+*.geany
+__pycache__
+
