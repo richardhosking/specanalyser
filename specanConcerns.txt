@@ -1,0 +1,25 @@
+Spectrum analyser Concerns 
+
+User entry of data 
+Freq start stop (span, centre) Bandwidth
+?Set gain) 
+
+Display - data entry keypad/buttons 
+
+Display 
+Display scan, data entered 
+
+ADC 
+initialize 
+Decode data from Log det 
+
+PLL 
+Main YIG driver/PLL
+Secondary PLL for fine control ?FM coil on YIG or second LO
+
+Calculate freq/PLL data based on data entered including limits 
+
+Capture screenshots => USB 
+
+Marker(s) catch freq/level data 
+ 
