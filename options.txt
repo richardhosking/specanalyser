@@ -1,0 +1,7 @@
+# File for project wide graphics options
+# Saves setting individual widgets 
+
+*font: Arial 14
+*Label*font: Arial 14 bold
+*Label*background: SlateGray3
+*Entry*font: Arial 20

@@ -19,8 +19,7 @@ class Display:
         self.marker = [0,500]
 
     def initialize(self):
-        self.canvas.grid(column = 0, row = 0, sticky=(N,S))
-        
+                
         # write a grid on the display
         self.canvas.create_rectangle(0, 0, 800, 600, outline='black', fill='black')
         
@@ -49,20 +48,24 @@ class Display:
         self.canvas.create_line(50, 450, 750, 450, fill='white', dash=(1, 5)) 
         self.canvas.create_line(50, 500, 750, 500, fill='white', dash=(1, 5))
 
-        
+    # write data and units to display    
     def write_units(self):
         message1 = ("REF: " + str(self.reference) + ' '+ self.reference_unit)
         message2 = ("RBW: " + str(self.RBW) + ' '+ self.RBW_unit)
         message3 = ("Scale: " + str(self.scale) + ' '+ self.scale_unit)
-        
+        message5 = ("Start: " + str(self.start_freq) + ' '+ self.start_freq_unit)
+        message6 = ("Stop: " + str(self.stop_freq) + ' '+ self.stop_freq_unit)        
         span = self.stop_freq - self.start_freq
         message4 = ("Span: " + str(span) + ' '+ self.stop_freq_unit)
                          
-        self.canvas.create_text(75,575,fill="white",font="Arial 16 bold", text=message1)
-        self.canvas.create_text(225,575,fill="white",font="Arial 16 bold", text=message2)
-        self.canvas.create_text(400,575,fill="white",font="Arial 16 bold", text=message3)   
-        self.canvas.create_text(575,575,fill="white",font="Arial 16 bold", text=message4) 
+        self.canvas.create_text(100,25,fill="white",font="Arial 16 bold", text=message1)
+        self.canvas.create_text(450,25,fill="white",font="Arial 16 bold", text=message2)
+        self.canvas.create_text(275,25,fill="white",font="Arial 16 bold", text=message3)   
+        self.canvas.create_text(450,575,fill="white",font="Arial 16 bold", text=message4) 
+        self.canvas.create_text(100,575,fill="white",font="Arial 16 bold", text=message5)   
+        self.canvas.create_text(275,575,fill="white",font="Arial 16 bold", text=message6)        
         
+        # Display dB units on graticule 
         self.canvas.create_text(85,60,fill="white",font="Arial 12", text="0 dBm")
         self.canvas.create_text(85,100,fill="white",font="Arial 12", text="-10")
         self.canvas.create_text(85,150,fill="white",font="Arial 12", text="-20")   
@@ -74,12 +77,12 @@ class Display:
         self.canvas.create_text(85,450,fill="white",font="Arial 12", text="-80")   
         self.canvas.create_text(85,500,fill="white",font="Arial 12", text="-90")
                      
-        
+    # Marker    
     def write_marker(self):
         x=self.marker[0]
         y=self.marker[1]
         
-        # Marker
+        # Marker outline
         self.canvas.create_polygon([x,y,x-5,y-8,x+5,y-8], outline='red',fill='red')
         
         # Write values for marker position
