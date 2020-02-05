@@ -22,4 +22,34 @@ Calculate freq/PLL data based on data entered including limits
 Capture screenshots => USB 
 
 Marker(s) catch freq/level data 
+
+Entities 
+Level
+- individual measurements from ADC => [array of values] ? 200/scan 
+- freq start
+- freq stop 
+=> derive span, centre 
+- step size = (freq start - freq stop)/200
+- marker [freq,level]
+
+Pseudocode
+setup start,stop,span, centre,step, marker
+
+while start
+
+for i in range(0,200) # 200 steps/scan
+    data=> PLL 
+    read ADC => data array 
+    data+ step 
+    display data 
+    update marker = display if changed
+    
+clear data
+        
+Interrupt driven 
+change freq/RBW        
+
+
+
+ 
  
