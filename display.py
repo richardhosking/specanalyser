@@ -3,14 +3,14 @@ from tkinter import *  #Tk, Canvas, Frame, BOTH
 import random
 
 class Display:
-    def __init__(self, canvas):
+    def __init__(self, canvas,projectData):
         self.canvas = canvas   #     
         self.line_data=[]      # store line IDs to allow them to be deleted between scans
         self.RBW = 1.0
         self.RBW_unit = "MHz"
-        self.start_freq = 0.00
+        self.start_freq = projectData['startFreq'].get()
         self.start_freq_unit = "MHz"
-        self.stop_freq = 2.8
+        self.stop_freq = projectData['stopFreq'].get()
         self.stop_freq_unit = "GHz"
         self.reference = 0 
         self.reference_unit = "dBm"
@@ -23,11 +23,12 @@ class Display:
         # write a grid on the display
         self.canvas.create_rectangle(0, 0, 800, 600, outline='black', fill='black')
         
+        # Outline 
         self.canvas.create_line(50, 50, 750, 50, fill='white')
         self.canvas.create_line(50, 50, 50, 550, fill='white')
         self.canvas.create_line(50, 550, 750, 550, fill='white')        
         self.canvas.create_line(750, 50, 750, 550, fill='white') 
-                 
+        # Graticule          
         self.canvas.create_line(120, 50, 120, 550, fill='white', dash=(1, 5))
         self.canvas.create_line(190, 50, 190, 550, fill='white', dash=(1, 5))
         self.canvas.create_line(260, 50, 260, 550, fill='white', dash=(1, 5))
@@ -55,8 +56,11 @@ class Display:
         message3 = ("Scale: " + str(self.scale) + ' '+ self.scale_unit)
         message5 = ("Start: " + str(self.start_freq) + ' '+ self.start_freq_unit)
         message6 = ("Stop: " + str(self.stop_freq) + ' '+ self.stop_freq_unit)        
-        span = self.stop_freq - self.start_freq
-        message4 = ("Span: " + str(span) + ' '+ self.stop_freq_unit)
+        span = int(self.stop_freq) - int(self.start_freq)
+        message4 = ("Span: " + str(span) + ' '+ self.start_freq_unit)
+
+        self.canvas.create_rectangle(0, 0, 800, 49, outline='black', fill='black')
+        self.canvas.create_rectangle(0, 551, 800, 600, outline='black', fill='black')
                          
         self.canvas.create_text(100,25,fill="white",font="Arial 16 bold", text=message1)
         self.canvas.create_text(450,25,fill="white",font="Arial 16 bold", text=message2)
@@ -132,4 +136,9 @@ class Display:
         # after method allows program to run continuously - creates a separate thread 
         # delay in msec         
         self.canvas.after(30, self.sim_scan)
+        
+    def update(self, projectData):
+        print(str(projectData))
+   
+    
 
